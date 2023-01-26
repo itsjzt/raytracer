@@ -1,13 +1,19 @@
 rescript = 1
 rule astj
-  command = "C:\Users\Lenovo\Desktop\personal\raytracer\node_modules\rescript\win32\bsc.exe"  -bs-v 10.0.1  -absname -bs-ast -o $out $i
-o src\main.ast : astj ..\..\src\main.res
+  command = "c:\Users\Lenovo\Desktop\personal\raytracer\node_modules\rescript\win32\bsc.exe"  -bs-v 10.0.1  -absname -bs-ast -o $out $i
+o src\Ray.ast : astj ..\..\src\Ray.res
 rule deps
-  command = "C:\Users\Lenovo\Desktop\personal\raytracer\node_modules\rescript\win32\bsb_helper.exe" -hash 30e70b599008ef2466990ab68a68adcd $in
+  command = "c:\Users\Lenovo\Desktop\personal\raytracer\node_modules\rescript\win32\bsb_helper.exe" -hash 1561e4eb84ef7d7896bf2887715a6bd2 $in
   restat = 1
-o src\main.d : deps src\main.ast
+o src\Ray.d : deps src\Ray.ast
 rule mij
-  command = "C:\Users\Lenovo\Desktop\personal\raytracer\node_modules\rescript\win32\bsc.exe" -I src   -bs-package-name your-project-name -bs-package-output es6:$in_d:.bs.js $i
+  command = "c:\Users\Lenovo\Desktop\personal\raytracer\node_modules\rescript\win32\bsc.exe" -I src   -bs-package-name your-project-name -bs-package-output commonjs:$in_d:.bs.js $i
   dyndep = 1
   restat = 1
-o src\main.cmj src\main.cmi ..\..\src\main.bs.js : mij src\main.ast
+o src\Ray.cmj src\Ray.cmi ..\..\src\Ray.bs.js : mij src\Ray.ast
+o src\Main.ast : astj ..\..\src\Main.res
+o src\Main.d : deps src\Main.ast
+o src\Main.cmj src\Main.cmi ..\..\src\Main.bs.js : mij src\Main.ast
+o src\Vec3.ast : astj ..\..\src\Vec3.res
+o src\Vec3.d : deps src\Vec3.ast
+o src\Vec3.cmj src\Vec3.cmi ..\..\src\Vec3.bs.js : mij src\Vec3.ast

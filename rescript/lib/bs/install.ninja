@@ -3,8 +3,16 @@ rule cp
   command = cmd.exe /C copy /Y $i $out >NUL
 rule touch
  command = cmd.exe /C type nul >>$out & copy $out+,, >NUL
-o main.cmi : cp ..\bs\src\main.cmi
-o main.cmj : cp ..\bs\src\main.cmj
-o main.cmt : cp ..\bs\src\main.cmt
-o main.res : cp ..\..\src\main.res
-build install.stamp : touch main.cmi main.cmj 
+o Ray.cmi : cp ..\bs\src\Ray.cmi
+o Ray.cmj : cp ..\bs\src\Ray.cmj
+o Ray.cmt : cp ..\bs\src\Ray.cmt
+o Ray.res : cp ..\..\src\Ray.res
+o Main.cmi : cp ..\bs\src\Main.cmi
+o Main.cmj : cp ..\bs\src\Main.cmj
+o Main.cmt : cp ..\bs\src\Main.cmt
+o Main.res : cp ..\..\src\Main.res
+o Vec3.cmi : cp ..\bs\src\Vec3.cmi
+o Vec3.cmj : cp ..\bs\src\Vec3.cmj
+o Vec3.cmt : cp ..\bs\src\Vec3.cmt
+o Vec3.res : cp ..\..\src\Vec3.res
+build install.stamp : touch Ray.cmi Ray.cmj Main.cmi Main.cmj Vec3.cmi Vec3.cmj 
